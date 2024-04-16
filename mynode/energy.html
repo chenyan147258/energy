@@ -1,0 +1,72 @@
+<script type="text/javascript">
+    RED.nodes.registerType('electricity',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            path: {value:""},
+            timeout:{value:"2",validate: RED.validators.number(true)},
+            sendmode: {value: "0"},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.svg",
+        label: function() {
+            return this.name||"electricity";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="electricity">
+
+    <div class="form-row" id="delay-details-for">
+        <label for="node-input-timeout"><i class="fa fa-clock-o"></i> <span>时长</span></label>
+        <input type="text" id="node-input-timeout" style="text-align:end; width:50px !important">
+        <span>秒</span>
+    </div>
+    
+    <div class="form-row">
+    <label for="node-input-sendmode" class="mqtt-form-row-col1"><i class="fa fa-empire"></i> <span>上传方式</span></label>
+    <select id="node-input-sendmode" class="mqtt-form-row-col1">
+        <option value="0">持续上传</option>
+        <option value="1">变化上传</option>
+    </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-path"><i class="fa fa-file-text"></i> 路径</label>
+        <input type="text" id="node-input-path" placeholder="路径">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 名称</label>
+        <input type="text" id="node-input-name" placeholder="名称">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="electricity">
+    <p>电能消耗:当前电压x当前电流x采集间隔/1000/3600;单位：千瓦时(度);同时对电能一直累加</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>current
+            <span class="property-type">number</span>
+        </dt>
+        <dd> 电流 单位(A). </dd>
+        <dt class="optional">voltage <span class="property-type">number</span></dt>
+        <dd>电压 单位(V).</dd>
+    </dl>
+    <h3>Outputs</h3>
+     <ol class="node-ports">
+         <li>累计电能消耗
+             <dl class="message-properties">
+                 <dt>payload <span class="property-type">number</span></dt>
+                 <dd>电能消耗 单位(kW·h)(度)</dd>
+             </dl>
+         </li>
+     </ol>
+
+     <h3>Details</h3>
+    <p><code>时长</code> 会取间隔在时长数值范围内的电流和电压数据</p>
+    <p><code>变化上传/持续上传</code> 当是变化上传时,电流或电压为0,则不会发送数据</p>
+    <p><code>路径</code>指json文件的存储路径</p>
+</script>

@@ -1,0 +1,65 @@
+[
+    {
+        "id": "52d375c3c119e47e",
+        "type": "debug",
+        "z": "07beeeac47e1664f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8f6a5ee89de9a990",
+        "type": "electricity",
+        "z": "07beeeac47e1664f",
+        "name": "电能消耗",
+        "path": "C:\\Users\\Administrator\\Desktop\\111.json",
+        "timeout": "5",
+        "sendmode": "0",
+        "x": 480,
+        "y": 240,
+        "wires": [
+            [
+                "52d375c3c119e47e"
+            ]
+        ]
+    },
+    {
+        "id": "b9a05d4f315ce48c",
+        "type": "inject",
+        "z": "07beeeac47e1664f",
+        "name": "",
+        "props": [
+            {
+                "p": "current",
+                "v": "30",
+                "vt": "num"
+            },
+            {
+                "p": "voltage",
+                "v": "200",
+                "vt": "num"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "8f6a5ee89de9a990"
+            ]
+        ]
+    }
+]

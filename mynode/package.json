@@ -1,0 +1,23 @@
+
+{
+  "name": "@chenyan454544/node-red-electricity",
+  "private":false,
+  "version": "1.0.1",
+  "description": "Calculation of cumulative electricity consumption",
+  "keywords": [ "node-red" ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ChenLei",
+  "license": "ISC",
+  "publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+  "node-red" : {
+    "nodes": {
+        "electricity": "electricity.js"
+    }
+}
+}
